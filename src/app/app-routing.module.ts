@@ -1,10 +1,14 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {TaskComponent} from "./task-management/features/task-list-page/task.component";
 
-const routes: Routes = [];
+const routes: Routes = [
+  {path: '', component: TaskComponent}
+];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }
+            imports: [RouterModule.forRoot(routes)],
+            exports: [RouterModule]
+          })
+export class AppRoutingModule {
+}

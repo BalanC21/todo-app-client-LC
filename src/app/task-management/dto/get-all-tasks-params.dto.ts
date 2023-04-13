@@ -1,3 +1,3 @@
 export interface GetAllTasksParamsDto {
-  status: string
+  status: string | null
 }
