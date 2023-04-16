@@ -5,7 +5,7 @@ import {TaskDto} from "../../dto/task.dto";
              selector: 'app-task-single',
              template: `
                  <div class="task-single">
-                     <p>{{task.taskName}}</p>
+                     <p>TaskName: {{task.taskName}}</p>
                      <p>Task Description: {{task.taskDescription}}</p>
                      <p>Deadline: {{task.taskDeadline}}</p>
                      <p>Status: {{task.taskType}}</p>

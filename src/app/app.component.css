@@ -1,14 +1,21 @@
-.task-container{
+.task-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow: auto;
   background-color: beige;
-  max-height: 500px;
 }
 
 .title {
   position: relative;
-  left: 50%;
+  left: 47%;
+  max-width: 50px;
+}
+
+.center-container {
+  max-width: 500px;
+  max-height: 400px;
+  margin: 135px auto;
+  background: #fff;
+  overflow: auto;
 }

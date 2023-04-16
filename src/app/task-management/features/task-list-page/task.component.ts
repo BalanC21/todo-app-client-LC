@@ -7,9 +7,11 @@ import {TaskDto} from "../../dto/task.dto";
              template: `
                  <ng-container>
                      <h1 class="title">Tasks</h1>
-                     <div class="task-container">
-                         <div *ngFor="let task of tasks">
-                             <app-task-single [task]="task"></app-task-single>
+                     <div class="center-container">
+                         <div class="task-container">
+                             <div *ngFor="let task of tasks">
+                                 <app-task-single [task]="task"></app-task-single>
+                             </div>
                          </div>
                      </div>
                  </ng-container>
