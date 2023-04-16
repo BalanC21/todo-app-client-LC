@@ -1,4 +1,8 @@
-const apiUrl = 'http://localhost:3000/'
+const apiUrl = 'http://localhost:3000/api/'
 export const apiRoutes = {
-  tasks: apiUrl + 'api/tasks'
+  tasks: {
+    allTasks: apiUrl + 'tasks',
+    unCompleted: apiUrl + 'tasks?status=unCompleted',
+    completed: apiUrl + 'tasks?status=completed'
+  }
 }

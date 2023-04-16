@@ -6,16 +6,15 @@ import {TaskDto} from "../../dto/task.dto";
              selector: 'app-task',
              template: `
                  <ng-container>
-                     <h1>Tasks</h1>
+                     <h1 class="title">Tasks</h1>
                      <div class="task-container">
                          <div *ngFor="let task of tasks">
-                             <p>{{task.taskName}}</p>
-                             <p>{{task.taskDescription}}</p>
-                             <p>{{task.taskDeadline}}</p>
+                             <app-task-single [task]="task"></app-task-single>
                          </div>
                      </div>
                  </ng-container>
-             `
+             `,
+             styleUrls: ['../../../app.component.css']
            })
 export class TaskComponent implements OnInit {
   tasks!: TaskDto[];
@@ -23,6 +22,6 @@ export class TaskComponent implements OnInit {
   constructor(public readonly taskService: TaskService) {}
 
   ngOnInit(): void {
-    this.taskService.getAllTasks().subscribe(response => this.tasks = response)
+    this.taskService.getAllUnCompletedTasks().subscribe(response => this.tasks = response)
   }
 }
