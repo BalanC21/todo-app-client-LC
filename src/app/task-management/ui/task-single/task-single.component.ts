@@ -9,6 +9,7 @@ import {TaskDto} from "../../dto/task.dto";
                      <p>Task Description: {{task.taskDescription}}</p>
                      <p>Deadline: {{task.taskDeadline}}</p>
                      <p>Status: {{task.taskType}}</p>
+                   <button>Set As Complete</button>
                    <br>
                  </div>
              `,
