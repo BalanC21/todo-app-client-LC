@@ -1,5 +1,7 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {TaskDto} from "../../dto/task.dto";
+import {TaskService} from "../../features/task-list-page/task.service";
+import {Observable} from "rxjs";
 
 @Component({
              selector: 'app-task-single',
@@ -9,13 +11,25 @@ import {TaskDto} from "../../dto/task.dto";
                      <p>Task Description: {{task.taskDescription}}</p>
                      <p>Deadline: {{task.taskDeadline}}</p>
                      <p>Status: {{task.taskType}}</p>
-                     <button>Set As Complete</button>
+                     <button (click)="updateStatus()">Set As Complete</button>
                      <br>
                  </div>
              `,
              styleUrls: ['./task-single.component.css']
            })
-export class TaskSingleComponent {
+export class TaskSingleComponent implements OnInit{
 @Input()
   task!: TaskDto;
+
+  constructor(public readonly taskService: TaskService) {}
+
+  updateStatus(): void{
+    console.log("click")
+    this.taskService.updateTaskStatus(this.task.id);
+  }
+
+  ngOnInit(): void {
+    console.log("init")
+  }
+
 }
