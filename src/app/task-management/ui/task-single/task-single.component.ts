@@ -28,6 +28,7 @@ export class TaskSingleComponent implements OnDestroy{
     this.result = this.taskService.updateTaskStatus(this.task.id).subscribe(result => {
       console.log("result")
       console.log(result)
+      console.log("after result")
     });
   }
 
