@@ -20,4 +20,7 @@ export class TaskService {
     return this.data.getAllTasks({status: null})
   }
 
+  updateTaskStatus(id: number): void {
+    this.data.updateTaskStatus(id)
+  }
 }

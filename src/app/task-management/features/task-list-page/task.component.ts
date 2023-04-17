@@ -24,6 +24,6 @@ export class TaskComponent implements OnInit {
   constructor(public readonly taskService: TaskService) {}
 
   ngOnInit(): void {
-    this.taskService.getAllUnCompletedTasks().subscribe(response => this.tasks = response)
+    this.taskService.getAllTasks().subscribe(response => this.tasks = response)
   }
 }

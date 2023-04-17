@@ -24,6 +24,15 @@ export class TaskApiService {
     return this.http.get(this.tasks.allTasks, {params: httpParams})
   }
 
+  updateTaskStatus(id: number): void {
+    console.log("api route")
+    console.log(this.tasks.update+id)
+    console.log(`${ this.tasks.update }${ id }`)
+    this.http.patch(`${ this.tasks.update }${ id }`,{}).subscribe(result => {
+      console.log(result);
+    })
+  }
+
   private buildHttpParams(params: GetAllTasksParamsDto) {
     const httpParams = new HttpParams();
     if (params.status) {
@@ -32,4 +41,6 @@ export class TaskApiService {
       return httpParams;
     }
   }
+
+
 }
