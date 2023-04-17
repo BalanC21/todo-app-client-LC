@@ -1,7 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {TaskDto} from "../../dto/task.dto";
 import {TaskService} from "../../features/task-list-page/task.service";
-import {Observable} from "rxjs";
+import {Observable, Subscriber, Subscription} from "rxjs";
 
 @Component({
              selector: 'app-task-single',
@@ -17,19 +17,24 @@ import {Observable} from "rxjs";
              `,
              styleUrls: ['./task-single.component.css']
            })
-export class TaskSingleComponent implements OnInit{
+export class TaskSingleComponent implements OnDestroy{
 @Input()
   task!: TaskDto;
+  result!: Subscription;
 
   constructor(public readonly taskService: TaskService) {}
 
   updateStatus(): void{
-    console.log("click")
-    this.taskService.updateTaskStatus(this.task.id);
+    this.result = this.taskService.updateTaskStatus(this.task.id).subscribe(result => {
+      console.log("result")
+      console.log(result)
+      console.log("after result")
+    });
   }
 
-  ngOnInit(): void {
-    console.log("init")
+  ngOnDestroy(): void {
+    this.result.unsubscribe()
   }
+
 
 }

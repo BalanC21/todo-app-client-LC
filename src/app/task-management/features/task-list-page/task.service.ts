@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {TaskApiService} from "../../data/task-api.service";
 import {TaskDto} from "../../dto/task.dto";
-import {Observable} from "rxjs";
+import {Observable, Subscription} from "rxjs";
 
 @Injectable({providedIn: 'root'})
 export class TaskService {
@@ -20,7 +20,7 @@ export class TaskService {
     return this.data.getAllTasks({status: null})
   }
 
-  updateTaskStatus(id: number): void {
-    this.data.updateTaskStatus(id)
+  updateTaskStatus(id: number): Observable<any> {
+    return this.data.updateTaskStatus(id)
   }
 }
