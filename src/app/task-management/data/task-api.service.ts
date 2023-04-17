@@ -2,7 +2,7 @@ import {inject, Injectable} from "@angular/core";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {apiRoutes} from "../../shared/api.routes";
 import {GetAllTasksParamsDto} from "../dto/get-all-tasks-params.dto";
-import {Observable} from "rxjs";
+import {Observable, Subscription} from "rxjs";
 
 @Injectable()
 export class TaskApiService {
@@ -24,13 +24,8 @@ export class TaskApiService {
     return this.http.get(this.tasks.allTasks, {params: httpParams})
   }
 
-  updateTaskStatus(id: number): void {
-    console.log("api route")
-    console.log(this.tasks.update+id)
-    console.log(`${ this.tasks.update }${ id }`)
-    this.http.patch(`${ this.tasks.update }${ id }`,{}).subscribe(result => {
-      console.log(result);
-    })
+  updateTaskStatus(id: number): Observable<any> {
+    return this.http.patch(`${this.tasks.update}${id}`, {})
   }
 
   private buildHttpParams(params: GetAllTasksParamsDto) {
