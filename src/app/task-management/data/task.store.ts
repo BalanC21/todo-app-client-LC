@@ -15,7 +15,7 @@ const createInitialState = (): TaskState => (
 export class TaskStore extends Store {
   constructor() {super(createInitialState());}
 
-  set(entities: TaskDto[]): void {
+  set(entities: Object): void {
     this.update(state => (
       {...state, entities}
     ));
