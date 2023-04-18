@@ -1,8 +1,8 @@
 import {Injectable} from "@angular/core";
 import {TaskState, TaskStore} from "./task.store";
 import {Observable} from "rxjs";
-import {TaskLightDto} from "../dto/task-light.dto";
 import {Query} from "@datorama/akita";
+import {TaskDto} from "../dto/task.dto";
 
 
 @Injectable()
@@ -11,7 +11,7 @@ export class TaskSelectors extends Query<TaskState> {
     super(taskStore)
   }
 
-  selectAll(): Observable<TaskLightDto[]> {
-    return this.select(store => store.entities);
+  selectAll(): Observable<TaskDto[]> {
+    return this.select(store => store.entities).pipe();
   }
 }
