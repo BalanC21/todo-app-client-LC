@@ -12,7 +12,8 @@ export class TaskActions {
     private readonly taskStore: TaskStore) {}
 
   @action("Load all tasks")
-  loadAllTasks(params: GetAllTasksParamsDto) {
-    firstValueFrom(this.taskApiService.getAllTasks(params)).then(response => this.taskStore.set(response))
+  loadAllTasks(params: GetAllTasksParamsDto): Promise<any> {
+    return firstValueFrom(this.taskApiService.getAllTasks(params))
+      .then(response => this.taskStore.set(response))
   }
 }
