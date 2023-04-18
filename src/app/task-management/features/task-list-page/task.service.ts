@@ -2,11 +2,15 @@ import {Injectable} from '@angular/core';
 import {TaskApiService} from "../../data/task-api.service";
 import {TaskDto} from "../../dto/task.dto";
 import {Observable} from "rxjs";
+import {TaskActions} from "../../data/task.actions";
 
 @Injectable({providedIn: 'root'})
 export class TaskService {
 
-  constructor(private readonly data: TaskApiService) {}
+  constructor(
+    private readonly data: TaskApiService,
+    private readonly taskAction: TaskActions
+  ) {}
 
   getAllUnCompletedTasks(): Observable<TaskDto[]> {
     return this.data.getAllUnCompletedTasks({status: null})
