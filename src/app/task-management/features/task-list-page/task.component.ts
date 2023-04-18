@@ -23,11 +23,6 @@ export class TaskComponent implements OnInit {
 
   constructor(public readonly taskService: TaskService) {}
 
-  loadTasks() {
-    this.taskService.getAllTasks().subscribe(response => this.tasks = response)
-  }
-
   ngOnInit(): void {
-    this.loadTasks()
   }
 }
