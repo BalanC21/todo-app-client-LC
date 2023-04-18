@@ -11,11 +11,9 @@ const createInitialState = (): TaskState => (
   {...initialBaseEntityLightState()}
 )
 
-export class BaseEntityLightStore<EntityLight, Entity, State extends StoreLightInterface<EntityLight, Entity>> extends Store {
-}
 
 @StoreConfig({name: "TaskStore"})
-export class TaskStore extends BaseEntityLightStore<TaskLightDto, TaskDto, TaskState> {
+export class TaskStore extends Store {
   constructor() {super(createInitialState());}
 
   set(entities: TaskLightDto[]): void {

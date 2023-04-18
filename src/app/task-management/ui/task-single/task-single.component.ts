@@ -1,6 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {TaskDto} from "../../dto/task.dto";
-import {TaskService} from "../../features/task-list-page/task.service";
+import {TaskListDataService} from "../../features/task-list-page/task-list-page-data.service";
+import {TaskApiService} from "../../data/task-api.service";
 
 @Component({
              selector: 'app-task-single',
@@ -20,7 +21,7 @@ export class TaskSingleComponent {
   @Input()
   task!: TaskDto;
 
-  constructor(public readonly taskService: TaskService) {}
+  constructor(public readonly taskService: TaskApiService) {}
 
   updateStatus(): void {
     this.taskService.updateTaskStatus(this.task.id);

@@ -3,12 +3,15 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {apiRoutes} from "../../shared/api.routes";
 import {GetAllTasksParamsDto} from "../dto/get-all-tasks-params.dto";
 import {Observable} from "rxjs";
+import {TaskStore} from "./task.store";
 
 @Injectable()
 export class TaskApiService {
   private readonly tasks = apiRoutes.tasks;
   private readonly http = inject(HttpClient);
 
+  constructor(private readonly taskStore: TaskStore) {
+  }
   getAllUnCompletedTasks(params: GetAllTasksParamsDto): Observable<any> {
     const httpParams = this.buildHttpParams(params)
     return this.http.get(this.tasks.unCompleted, {params: httpParams})
