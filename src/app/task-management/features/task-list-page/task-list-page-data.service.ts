@@ -15,8 +15,4 @@ export class TaskListDataService implements OnInit {
   private loadTasks(): void {
     this.taskAction.loadAllTasks({status: null})
   }
-
-  updateTaskStatus(id: number) {
-
-  }
 }
