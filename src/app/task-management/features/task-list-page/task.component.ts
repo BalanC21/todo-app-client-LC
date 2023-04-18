@@ -21,11 +21,8 @@ import {TaskListDataService} from "./task-list-page-data.service";
 export class TaskComponent implements OnInit {
   tasks!: TaskDto[];
 
-  constructor(
-    public readonly taskService: TaskListDataService
-  ) {
+  constructor( public readonly taskService: TaskListDataService ) {
   }
-
 
   ngOnInit(): void {
     this.taskService.ngOnInit();
