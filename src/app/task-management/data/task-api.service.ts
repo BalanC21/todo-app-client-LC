@@ -25,9 +25,6 @@ export class TaskApiService {
   }
 
   updateTaskStatus(id: number): void {
-    console.log("api route")
-    console.log(this.tasks.update+id)
-    console.log(`${ this.tasks.update }${ id }`)
     this.http.patch(`${ this.tasks.update }${ id }`,{}).subscribe(result => {
       console.log(result);
     })
