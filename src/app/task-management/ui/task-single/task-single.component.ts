@@ -1,40 +1,29 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {TaskDto} from "../../dto/task.dto";
-import {TaskService} from "../../features/task-list-page/task.service";
-import {Observable, Subscriber, Subscription} from "rxjs";
+import {TaskListDataService} from "../../features/task-list-page/task-list-page-data.service";
+import {TaskApiService} from "../../data/task-api.service";
 
 @Component({
              selector: 'app-task-single',
              template: `
-                 <div class="task-single">
-                     <p>TaskName: {{task.taskName}}</p>
-                     <p>Task Description: {{task.taskDescription}}</p>
-                     <p>Deadline: {{task.taskDeadline}}</p>
-                     <p>Status: {{task.taskType}}</p>
-                     <button (click)="updateStatus()">Set As Complete</button>
-                     <br>
-                 </div>
+               <div class="task-single">
+                 <p>TaskName: {{task.taskName}}</p>
+                 <p>Task Description: {{task.taskDescription}}</p>
+                 <p>Deadline: {{task.taskDeadline}}</p>
+                 <p>Status: {{task.taskType}}</p>
+                 <button (click)="updateStatus()">Set As Complete</button>
+                 <br>
+               </div>
              `,
              styleUrls: ['./task-single.component.css']
            })
-export class TaskSingleComponent implements OnDestroy{
-@Input()
+export class TaskSingleComponent {
+  @Input()
   task!: TaskDto;
-  result!: Subscription;
 
-  constructor(public readonly taskService: TaskService) {}
+  constructor(public readonly taskService: TaskApiService) {}
 
-  updateStatus(): void{
-    this.result = this.taskService.updateTaskStatus(this.task.id).subscribe(result => {
-      console.log("result")
-      console.log(result)
-      console.log("after result")
-    });
+  updateStatus(): void {
+    this.taskService.updateTaskStatus(this.task.id);
   }
-
-  ngOnDestroy(): void {
-    this.result.unsubscribe()
-  }
-
-
 }

@@ -2,13 +2,16 @@ import {inject, Injectable} from "@angular/core";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {apiRoutes} from "../../shared/api.routes";
 import {GetAllTasksParamsDto} from "../dto/get-all-tasks-params.dto";
-import {Observable, Subscription} from "rxjs";
+import {Observable, tap} from "rxjs";
+import {TaskStore} from "./task.store";
 
 @Injectable()
 export class TaskApiService {
   private readonly tasks = apiRoutes.tasks;
   private readonly http = inject(HttpClient);
 
+  constructor(private readonly taskStore: TaskStore) {
+  }
   getAllUnCompletedTasks(params: GetAllTasksParamsDto): Observable<any> {
     const httpParams = this.buildHttpParams(params)
     return this.http.get(this.tasks.unCompleted, {params: httpParams})
@@ -19,13 +22,15 @@ export class TaskApiService {
     return this.http.get(this.tasks.completed, {params: httpParams})
   }
 
-  getAllTasks(params: GetAllTasksParamsDto):Observable<any> {
+  getAllTasks(params: GetAllTasksParamsDto):Observable<Object> {
     const httpParams = this.buildHttpParams(params)
     return this.http.get(this.tasks.allTasks, {params: httpParams})
   }
 
-  updateTaskStatus(id: number): Observable<any> {
-    return this.http.patch(`${this.tasks.update}${id}`, {})
+  updateTaskStatus(id: number): void {
+    this.http.patch(`${ this.tasks.update }${ id }`,{}).subscribe(result => {
+      console.log(result);
+    })
   }
 
   private buildHttpParams(params: GetAllTasksParamsDto) {
