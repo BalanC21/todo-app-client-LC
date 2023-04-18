@@ -1,14 +1,13 @@
 import {Injectable, OnInit} from '@angular/core';
 import {TaskActions} from "../../data/task.actions";
 import {TaskSelectors} from "../../data/task.selectors";
+import {Observable} from "rxjs";
+import {TaskLightDto} from "../../dto/task-light.dto";
 import {TaskDto} from "../../dto/task.dto";
-import {Observable, tap} from "rxjs";
 
 
 @Injectable()
 export class TaskListDataService implements OnInit {
-  tasks?: TaskDto[]
-
   constructor(readonly taskAction: TaskActions, readonly taskSelectors: TaskSelectors) {
   }
 
@@ -16,11 +15,13 @@ export class TaskListDataService implements OnInit {
     this.loadTasks()
   }
 
-  selectAllTasks(): Observable<any> {
-    return this.taskSelectors.selectAll().pipe(tap(response => console.log(response)))
+  async loadTasks(): Promise<any> {
+    return await this.taskAction.loadAllTasks({status: null})
   }
 
-  private loadTasks(): void {
-    this.taskAction.loadAllTasks({status: null})
+  selectAllTasks(): Observable<TaskDto[]>{
+    return this.taskSelectors.selectAll();
   }
+
+
 }

@@ -4,6 +4,8 @@ import {apiRoutes} from "../../shared/api.routes";
 import {GetAllTasksParamsDto} from "../dto/get-all-tasks-params.dto";
 import {Observable, tap} from "rxjs";
 import {TaskStore} from "./task.store";
+import {TaskDto} from "../dto/task.dto";
+import {TaskLightDto} from "../dto/task-light.dto";
 
 @Injectable()
 export class TaskApiService {
@@ -22,7 +24,7 @@ export class TaskApiService {
     return this.http.get(this.tasks.completed, {params: httpParams})
   }
 
-  getAllTasks(params: GetAllTasksParamsDto):Observable<any> {
+  getAllTasks(params: GetAllTasksParamsDto):Observable<Object> {
     const httpParams = this.buildHttpParams(params)
     return this.http.get(this.tasks.allTasks, {params: httpParams})
   }
