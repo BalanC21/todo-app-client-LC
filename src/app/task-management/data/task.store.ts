@@ -1,17 +1,17 @@
 import {Store, StoreConfig} from "@datorama/akita";
 import {TaskDto} from "../dto/task.dto";
-import {StoreInterface} from "../../shared/store.interface";
+import {StoreLightInterface} from "../../shared/store-light.interface";
 import {TaskLightDto} from "../dto/task-light.dto";
 import {initialBaseEntityLightState} from "../../shared/store.functions";
 
-export interface TaskState extends StoreInterface<TaskLightDto, TaskDto> {
+export interface TaskState extends StoreLightInterface<TaskLightDto, TaskDto> {
 }
 
 const createInitialState = (): TaskState => (
   {...initialBaseEntityLightState()}
 )
 
-export class BaseEntityLightStore<EntityLight, Entity, State extends StoreInterface<EntityLight, Entity>> extends Store {
+export class BaseEntityLightStore<EntityLight, Entity, State extends StoreLightInterface<EntityLight, Entity>> extends Store {
 }
 
 @StoreConfig({name: "TaskStore"})
