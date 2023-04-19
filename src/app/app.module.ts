@@ -25,7 +25,7 @@ import {TaskSelectors} from "./task-management/data/task.selectors";
             providers: [
               TaskApiService, TaskApiService,
               HttpClient, TaskListDataService,
-              TaskActions, TaskStore, TaskSelectors
+              TaskActions, TaskStore, TaskSelectors,
             ],
             exports: [],
             bootstrap: [AppComponent]

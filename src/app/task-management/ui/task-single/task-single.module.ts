@@ -8,7 +8,7 @@ import {TaskSingleComponent} from "./task-single.component";
   declarations: [TaskSingleComponent],
   exports:[TaskSingleComponent],
   imports: [
-    CommonModule,
+    CommonModule
   ]
 })
 export class TaskSingleModule { }
