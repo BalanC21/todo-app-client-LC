@@ -36,8 +36,6 @@ export class TaskActions {
         })),
       ).subscribe(tasks => {
         this.taskStore.set(tasks);
-        console.log("all tasks")
-        console.log(this.taskSelectors.selectAll())
       });
 
     })
