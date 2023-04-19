@@ -2,10 +2,8 @@ import {inject, Injectable} from "@angular/core";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {apiRoutes} from "../../shared/api.routes";
 import {GetAllTasksParamsDto} from "../dto/get-all-tasks-params.dto";
-import {Observable} from "rxjs";
+import {Observable, tap} from "rxjs";
 import {TaskStore} from "./task.store";
-import {TaskDto} from "../dto/task.dto";
-import {TaskLightDto} from "../dto/task-light.dto";
 
 @Injectable()
 export class TaskApiService {

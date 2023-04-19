@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {TaskDto} from "../../dto/task.dto";
 import {TaskListDataService} from "./task-list-page-data.service";
-import {TaskLightDto} from "../../dto/task-light.dto";
 
 @Component({
   selector: 'app-task',
@@ -29,6 +28,4 @@ export class TaskComponent implements OnInit {
     this.taskService.ngOnInit();
     this.taskService.selectAllTasks().subscribe(result => this.tasks=result);
   }
-
-
 }
