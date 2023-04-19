@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {TaskApiService} from "./task-api.service";
 import {action} from '@datorama/akita';
 import {GetAllTasksParamsDto} from "../dto/get-all-tasks-params.dto";
-import {firstValueFrom, map} from "rxjs";
+import {firstValueFrom, map, take} from "rxjs";
 import {TaskStore} from "./task.store";
 import {TaskDto} from "../dto/task.dto";
 import {TaskSelectors} from "./task.selectors";
@@ -22,22 +22,25 @@ export class TaskActions {
   }
 
   @action("updateTask")
-  updateTask(taskDto: TaskDto){
-    const tasks = this.taskSelectors.selectAll().pipe(
-      map(tasks => {
-        tasks.map(
-          task => {
-            if (task.id===taskDto.id){
-              task.taskType=taskDto.taskType;
-            }
+  updateTask(id: number){
+    let updatedTaskDto = this.taskApiService.updateTaskStatus(id);
+    updatedTaskDto.subscribe(updatedTask => {
+      this.taskSelectors.selectAll().pipe(
+        take(1),
+        map(tasks => tasks.map(task => {
+          if (task.id === updatedTask.id) {
+            return { ...task, taskType: updatedTask.taskType };
+          } else {
+            return task;
           }
-        )
-      })
-    );
-    this.taskStore.set(tasks);
-    console.log("all tasks")
-    console.log(this.taskSelectors.selectAll())
+        })),
+      ).subscribe(tasks => {
+        this.taskStore.set(tasks);
+        console.log("all tasks")
+        console.log(this.taskSelectors.selectAll())
+      });
 
+    })
   }
 
 }

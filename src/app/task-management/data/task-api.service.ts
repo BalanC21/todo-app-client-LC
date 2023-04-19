@@ -6,7 +6,7 @@ import {BehaviorSubject, Observable, tap} from "rxjs";
 import {TaskStore} from "./task.store";
 import {TaskActions} from "./task.actions";
 import {TaskDto} from "../dto/task.dto";
-import {TaskSingleService} from "../ui/task-single/task-single.service";
+import {TaskListDataService} from "../features/task-list-page/task-list-page-data.service";
 
 @Injectable()
 export class TaskApiService {
@@ -15,7 +15,7 @@ export class TaskApiService {
 
   constructor(
     // private readonly taskActions: TaskActions
-    private readonly taskSingleService: TaskSingleService
+    // private readonly taskService: TaskListDataService
   ) {
   }
   getAllUnCompletedTasks(params: GetAllTasksParamsDto): Observable<any> {
@@ -33,13 +33,8 @@ export class TaskApiService {
     return this.http.get(this.tasks.allTasks, {params: httpParams})
   }
 
-  updateTaskStatus(id: number): void {
-    this.http.patch<TaskDto>(`${ this.tasks.update }${ id }`,{}).pipe().subscribe(result => {
-      console.log(result);
-      // this.taskActions.updateTask(result)
-      this.taskSingleService.updateTask(result);
-
-    })
+  updateTaskStatus(id: number): Observable<TaskDto> {
+    return this.http.patch<TaskDto>(`${ this.tasks.update }${ id }`,{})
   }
 
   private buildHttpParams(params: GetAllTasksParamsDto) {

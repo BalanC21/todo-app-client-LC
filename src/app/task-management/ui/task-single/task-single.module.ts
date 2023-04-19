@@ -9,6 +9,6 @@ import {TaskSingleComponent} from "./task-single.component";
   exports:[TaskSingleComponent],
   imports: [
     CommonModule
-  ],
+  ]
 })
 export class TaskSingleModule { }

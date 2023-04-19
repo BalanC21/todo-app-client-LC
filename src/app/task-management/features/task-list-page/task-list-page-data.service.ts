@@ -22,4 +22,7 @@ export class TaskListDataService implements OnInit {
     return this.taskSelectors.selectAll()
   }
 
+  updateTask(id: number){
+    this.taskAction.updateTask(id);
+  }
 }
