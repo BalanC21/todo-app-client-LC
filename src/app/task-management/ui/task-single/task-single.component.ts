@@ -21,9 +21,9 @@ export class TaskSingleComponent {
   @Input()
   task!: TaskDto;
 
-  constructor(public readonly taskService: TaskApiService) {}
+  constructor(public readonly taskService: TaskListDataService) {}
 
   updateStatus(): void {
-    this.taskService.updateTaskStatus(this.task.id);
+    this.taskService.updateTask(this.task.id);
   }
 }
