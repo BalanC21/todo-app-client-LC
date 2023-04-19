@@ -3,7 +3,8 @@ import {RouterModule, Routes} from '@angular/router';
 import {TaskComponent} from "./task-management/features/task-list-page/task.component";
 
 const routes: Routes = [
-  {path: '', component: TaskComponent}
+  {path: '', component: TaskComponent},
+  {path: 'completed', component: TaskComponent}
 ];
 
 @NgModule({

@@ -1,7 +1,7 @@
 import {Injectable, OnInit} from '@angular/core';
 import {TaskActions} from "../../data/task.actions";
 import {TaskSelectors} from "../../data/task.selectors";
-import {Observable, tap} from "rxjs";
+import {Observable} from "rxjs";
 import {TaskDto} from "../../dto/task.dto";
 
 
@@ -15,14 +15,17 @@ export class TaskListDataService implements OnInit {
   }
 
   async loadTasks(): Promise<any> {
-    return await this.taskAction.loadAllTasks({status: "unCompleted"})
+    return await this.taskAction.loadAllTasks({status: null})
   }
 
-  selectAllTasks(): Observable<TaskDto[]> {
-    return this.taskSelectors.selectAll()
+  selectAllTasks(route: string): Observable<TaskDto[]> {
+    if (route === "") {
+      return this.taskSelectors.selectAll()
+    }
+    return this.taskSelectors.selectByStatus(route)
   }
 
-  updateTask(id: number){
+  updateTask(id: number) {
     this.taskAction.updateTask(id);
   }
 }
