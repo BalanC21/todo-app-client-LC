@@ -6,18 +6,24 @@ import {Subject} from "rxjs";
 @Component({
              selector: 'app-task',
              template: `
-               <ng-container>
-                 <button (click)="displayAllTasks()">Display All</button>
-                 <button (click)="displayByStatus()">Display ByStatus</button>
-                 <h1 class="title">Tasks</h1>
-                 <div class="center-container">
-                   <div class="task-container">
-                     <div *ngFor="let task of tasks">
-                       <app-task-single [task]="task"></app-task-single>
+                 <ng-container>
+                     <button (click)="displayAllTasks()">Display All</button>
+                     <button (click)="displayByStatus()">Display ByStatus</button>
+                     <h1 class="title">Tasks</h1>
+                     <div class="tasks-parent">
+                         <div class="addTaskContainer">
+                             <add-task></add-task>
+                         </div>
+                         <div class="center-container" style="display: inline-block">
+                             <div class="task-container">
+                                 <div *ngFor="let task of tasks">
+                                     <app-task-single [task]="task"></app-task-single>
+                                 </div>
+                             </div>
+                         </div>
                      </div>
-                   </div>
-                 </div>
-               </ng-container>
+
+                 </ng-container>
              `,
              styleUrls: ['../../../app.component.css']
            })

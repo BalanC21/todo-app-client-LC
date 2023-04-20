@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import {TaskComponent} from "./task.component";
 import {HttpClientModule} from "@angular/common/http";
 import {TaskSingleModule} from "../../ui/task-single/task-single.module";
+import {AddTaskModule} from "../add-task/add-task.module";
 
 @NgModule({
             declarations: [TaskComponent],
@@ -11,6 +12,7 @@ import {TaskSingleModule} from "../../ui/task-single/task-single.module";
               CommonModule,
               HttpClientModule,
               TaskSingleModule,
+              AddTaskModule
             ]
           })
 export class TaskModule {
