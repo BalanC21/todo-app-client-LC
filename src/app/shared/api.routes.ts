@@ -4,6 +4,7 @@ export const apiRoutes = {
     allTasks: apiUrl + 'tasks',
     unCompleted: apiUrl + 'tasks?status=unCompleted',
     completed: apiUrl + 'tasks?status=completed',
-    update: apiUrl + 'tasks/'
+    update: apiUrl + 'tasks/',
+    postTask: apiUrl + 'tasks'
   }
 }

@@ -7,6 +7,7 @@ import {TaskStore} from "./task.store";
 import {TaskActions} from "./task.actions";
 import {TaskDto} from "../dto/task.dto";
 import {TaskListDataService} from "../features/task-list-page/task-list-page-data.service";
+import {PostTaskDto} from "../dto/post-task-dto";
 
 @Injectable()
 export class TaskApiService {
@@ -44,6 +45,10 @@ export class TaskApiService {
     } else {
       return httpParams;
     }
+  }
+
+  postTask(body: PostTaskDto):Observable<TaskDto>{
+    return this.http.post<TaskDto>(`${ this.tasks.postTask }`, body)
   }
 
 

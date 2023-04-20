@@ -12,6 +12,10 @@ export class TaskSelectors extends Query<TaskState> {
   }
 
   selectAll(): Observable<TaskDto[]> {
-    return this.select(store => store.entities);
+    return this.select(store => store.entities)
+  }
+
+  selectByStatus(route: string): Observable<TaskDto[]> {
+    return this.select(store => store.entities.filter(elem => elem.taskType === route))
   }
 }

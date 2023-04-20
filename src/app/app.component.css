@@ -18,4 +18,19 @@
   margin: 135px auto;
   background: #fff;
   overflow: auto;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.tasks-parent{
+  text-align: center;
+}
+
+.addTaskContainer{
+  display: inline-block;
+  vertical-align: middle;
+  background-color: burlywood;
+  margin-right: 20em;
+  padding: 2em;
+  text-align: right;
 }
